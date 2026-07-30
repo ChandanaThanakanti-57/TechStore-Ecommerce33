@@ -54,6 +54,9 @@
             </div>
         </div>
 
+
+        </div>
+
         <div class="row mt-4">
 
             <!-- Low Stock -->
@@ -109,6 +112,9 @@
 
                 </div>
             </div>
+
+
+
             <div class="row mt-3">
 
                 <div class="col-md-3">
@@ -120,9 +126,31 @@
 
                 </div>
 
+                <div class="col-md-4">
+                    <div class="card text-white shadow h-100"
+                         style="background:linear-gradient(135deg,#11998e,#38ef7d);">
+
+                        <div class="card-body">
+                            <h5 class="card-title">🔥 Best Product</h5>
+
+                            <h2 class="fw-bold mb-0"
+                                th:if="${bestProduct != null}"
+                                th:text="${bestProduct.name}">
+                            </h2>
+
+                            <h2 class="fw-bold mb-0"
+                                th:if="${bestProduct == null}">
+                                No Data
+                            </h2>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
 
         </div>
+
 
         <h3>Low Stock Products</h3>
 
@@ -140,7 +168,7 @@
 
         </table>
 
-    </div>
+
 
 
     <hr class="mt-5">

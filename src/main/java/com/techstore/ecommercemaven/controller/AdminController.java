@@ -23,6 +23,7 @@ import com.techstore.ecommercemaven.repository.AdminLogRepository;
 import com.techstore.ecommercemaven.service.RefundService;
 import org.springframework.web.multipart.MultipartFile;
 import com.techstore.ecommercemaven.service.ProductService;
+import com.techstore.ecommercemaven.service.AnalyticsService;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -44,6 +45,7 @@ public class AdminController {
     private final ProductService productService;
 
     private final RefundService refundService;
+    private final AnalyticsService analyticsService;
 
     public AdminController(
             ProductRepository productRepository,
@@ -57,7 +59,8 @@ public class AdminController {
             AdminLogService adminLogService,
             AdminLogRepository adminLogRepository,
             RefundService refundService,
-            ProductService productService) {
+            ProductService productService,
+            AnalyticsService analyticsService) {
 
         this.productRepository = productRepository;
         this.orderRepository = orderRepository;
@@ -71,7 +74,9 @@ public class AdminController {
         this.adminLogRepository = adminLogRepository;
         this.refundService = refundService;
         this.productService = productService;
+        this.analyticsService = analyticsService;
     }
+
 
     @GetMapping("/admin")
     public String adminDashboard(Model model) {
@@ -158,6 +163,17 @@ public class AdminController {
                 "recentLogs",
                 adminLogRepository
                         .findTop20ByOrderByCreatedAtDesc());
+
+        model.addAttribute(
+                "bestProduct",
+                analyticsService.bestSellingProduct()
+        );
+
+
+        model.addAttribute(
+                "totalProducts",
+                analyticsService.totalProducts()
+        );
 
         return "admin-dashboard";
     }

@@ -1,4 +1,5 @@
 package com.techstore.ecommercemaven.model;
+
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -26,6 +27,14 @@ public class Refund {
 
     private String comments;
 
+    @Column(name = "risk_score")
+    private Integer riskScore = 0;
+
+    @Column(name = "approval_type")
+    private String approvalType;
+
+    @Column(length = 500)
+    private String riskReason;
 
     public Long getId() {
         return id;
@@ -97,5 +106,29 @@ public class Refund {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public Integer getRiskScore() {
+        return riskScore;
+    }
+
+    public void setRiskScore(Integer riskScore) {
+        this.riskScore = riskScore;
+    }
+
+    public String getApprovalType() {
+        return approvalType;
+    }
+
+    public void setApprovalType(String approvalType) {
+        this.approvalType = approvalType;
+    }
+
+    public String getRiskReason() {
+        return riskReason;
+    }
+
+    public void setRiskReason(String riskReason) {
+        this.riskReason = riskReason;
     }
 }
